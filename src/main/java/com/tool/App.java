@@ -1,15 +1,10 @@
 package com.tool;
 
 import javax.swing.*;
-import java.awt.AWTException;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Robot;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-
 
 /**
  * Hello world!
@@ -36,14 +31,15 @@ public class App implements Runnable
         int y;
         Random random = new Random();
         while(!isStop){
+            Point mousepoint = MouseInfo.getPointerInfo().getLocation();
             //随机生成坐标
-            x = random.nextInt(1000);
-            y = random.nextInt(1000);
+            //x = random.nextInt(1000);
+            //y = random.nextInt(1000);
             //开始移动
-            robot.mouseMove(x,y);
+            robot.mouseMove(mousepoint.x+1,mousepoint.y);
+            robot.mouseMove(mousepoint.x-1,mousepoint.y);
             //每5秒跑一次
-            robot.delay(1000);
-
+            robot.delay(59000);
         }
     }
     //
@@ -69,9 +65,7 @@ public class App implements Runnable
             close.setFont(font);
             close.setBorderPainted(true);
             close.setFocusable(false);
-
             add(close);
-
             //点击button后，程序终止。
             close.addActionListener(new ActionListener() {
                 @Override
